@@ -1,0 +1,755 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>An Evening on Holland Street</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+@page {
+  size: Letter;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  background: var(--cream);
+}
+
+.page {
+  width: 8.5in;
+  height: 11in;
+  padding: 0.65in;
+  page-break-after: always;
+  position: relative;
+  background:
+    linear-gradient(135deg, rgba(198,156,77,0.12), rgba(248,243,231,0.95) 38%),
+    var(--cream);
+  overflow: hidden;
+}
+
+.page::after {
+  content: "";
+  position: absolute;
+  right: -0.5in;
+  bottom: -0.5in;
+  width: 2.2in;
+  height: 2.2in;
+  border-radius: 50%;
+  background: rgba(244,211,94,0.28);
+}
+
+.cover {
+  padding: 0;
+  background: var(--navy);
+}
+
+.hero {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cover-band {
+  position: absolute;
+  left: 0.55in;
+  right: 0.55in;
+  bottom: 0.75in;
+  padding: 0.35in 0.45in;
+  color: white;
+  background: var(--navy);
+  border-left: 10px solid var(--gold);
+}
+
+.cover h1 {
+  margin: 0;
+  font-size: 42pt;
+  line-height: 0.95;
+  letter-spacing: -1px;
+}
+
+.cover p {
+  margin: 8px 0 0 0;
+  font-family: Arial, sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 11pt;
+}
+
+.gold-rule {
+  width: 1.4in;
+  height: 4px;
+  background: var(--gold);
+  margin: 16px 0 10px 0;
+}
+
+.section-kicker {
+  font-family: Arial, sans-serif;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 9pt;
+  font-weight: bold;
+}
+
+h2 {
+  color: var(--navy);
+  font-size: 28pt;
+  margin: 8px 0 18px 0;
+  line-height: 1;
+}
+
+h3 {
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+p, li {
+  font-size: 11.5pt;
+  line-height: 1.45;
+}
+
+.lead {
+  font-size: 14pt;
+  line-height: 1.45;
+  max-width: 6.7in;
+}
+
+.accent-strip {
+  height: 0.18in;
+  width: 100%;
+  margin: 0.32in 0;
+  background: linear-gradient(90deg, var(--navy), var(--gold), var(--lemon), var(--olive));
+  border-radius: 99px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+  margin: 18px 0 24px 0;
+}
+
+.card {
+  background: rgba(255,255,255,0.82);
+  border: 1px solid rgba(198,156,77,0.55);
+  border-radius: 16px;
+  padding: 15px;
+  min-height: 0.85in;
+  box-shadow: 0 8px 18px rgba(31,53,94,0.08);
+}
+
+.card-label {
+  font-family: Arial, sans-serif;
+  font-size: 8.5pt;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--gold);
+  font-weight: bold;
+}
+
+.card-value {
+  margin-top: 8px;
+  color: var(--navy);
+  font-size: 16pt;
+  font-weight: bold;
+}
+
+.card-text {
+  margin-top: 8px;
+  font-size: 10.5pt;
+  line-height: 1.35;
+}
+
+.weather-card {
+  background: var(--navy);
+  color: white;
+  padding: 22px;
+  border-radius: 22px;
+  margin-top: 0.2in;
+}
+
+.weather-card h3 {
+  color: var(--lemon);
+  margin-top: 0;
+}
+
+.mini-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin: 15px 0;
+}
+
+.mini-grid span {
+  background: rgba(255,255,255,0.12);
+  padding: 12px;
+  border-radius: 12px;
+  font-family: Arial, sans-serif;
+  font-size: 10pt;
+}
+
+.metadata {
+  font-family: Arial, sans-serif;
+  font-size: 8.5pt;
+  color: rgba(255,255,255,0.78);
+}
+
+.timeline {
+  margin-top: 0.35in;
+}
+
+.timeline-row {
+  display: grid;
+  grid-template-columns: 1.4in 1fr;
+  align-items: center;
+  border-left: 7px solid var(--gold);
+  background: rgba(255,255,255,0.78);
+  margin-bottom: 14px;
+  padding: 16px;
+  border-radius: 0 16px 16px 0;
+}
+
+.timeline-time {
+  color: var(--navy);
+  font-size: 18pt;
+  font-weight: bold;
+}
+
+.timeline-event {
+  font-size: 14pt;
+}
+
+.map-card {
+  height: 2.65in;
+  border-radius: 22px;
+  background: linear-gradient(135deg, var(--navy), var(--olive));
+  color: white;
+  display: grid;
+  grid-template-columns: 1.75in 1fr;
+  gap: 18px;
+  align-items: center;
+  padding: 22px;
+  margin-top: 0.35in;
+  font-size: 17pt;
+}
+
+.map-copy small {
+  display: block;
+  margin-top: 8px;
+  font-family: Arial, sans-serif;
+  font-size: 10pt;
+  opacity: 0.85;
+}
+
+.generated-map {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.generated-map rect {
+  fill: rgba(248,243,231,0.96);
+}
+
+.generated-map path {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.main-road {
+  stroke: rgba(31,53,94,0.65);
+  stroke-width: 16;
+}
+
+.cross-road {
+  stroke: rgba(31,53,94,0.32);
+  stroke-width: 12;
+}
+
+.minor-road {
+  stroke: rgba(107,112,92,0.28);
+  stroke-width: 8;
+}
+
+.route-line {
+  stroke: var(--gold);
+  stroke-width: 5;
+  stroke-dasharray: 12 9;
+}
+
+.map-point circle {
+  fill: var(--lemon);
+  stroke: var(--navy);
+  stroke-width: 3;
+}
+
+.map-point.destination circle {
+  fill: var(--gold);
+  r: 13;
+}
+
+.map-point.soft circle {
+  fill: white;
+}
+
+.map-point text,
+.road-label {
+  fill: var(--navy);
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.road-label {
+  fill: rgba(31,53,94,0.62);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.address {
+  color: var(--gold);
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  margin: 20px 0;
+}
+
+.editor-note {
+  background: var(--navy);
+  color: white;
+  padding: 18px;
+  border-radius: 18px;
+}
+
+.editor-note h3 {
+  color: var(--lemon);
+  margin-top: 0;
+}
+
+.pill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pill-list span {
+  display: inline-block;
+  padding: 9px 13px;
+  border-radius: 999px;
+  background: white;
+  border: 1px solid var(--olive);
+  font-family: Arial, sans-serif;
+  font-size: 10pt;
+}
+
+.pill-list.gold span {
+  border-color: var(--gold);
+  background: rgba(244,211,94,0.18);
+}
+
+.neighbourhood-card {
+  min-height: 1.35in;
+}
+
+.wildlife-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 12px 0 18px 0;
+}
+
+.wildlife {
+  display: grid;
+  grid-template-columns: 0.48in 1fr;
+  gap: 12px;
+  align-items: start;
+  background: rgba(31,53,94,0.08);
+  border-left: 5px solid var(--gold);
+  padding: 12px;
+  border-radius: 0 12px 12px 0;
+}
+
+.wildlife-icon {
+  width: 0.42in;
+  height: 0.42in;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--lemon);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+  font-size: 8pt;
+  font-weight: bold;
+}
+
+.wildlife b {
+  color: var(--navy);
+}
+
+.wildlife p {
+  margin: 4px 0 0 0;
+  font-size: 9.5pt;
+  line-height: 1.28;
+}
+
+.nearby-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.nearby-item {
+  display: grid;
+  grid-template-columns: 1.4in 1fr;
+  gap: 14px;
+  align-items: start;
+  background: rgba(255,255,255,0.78);
+  border: 1px solid rgba(198,156,77,0.45);
+  padding: 13px 15px;
+  border-radius: 12px;
+}
+
+.nearby-item b {
+  color: var(--navy);
+}
+
+.nearby-item span {
+  font-size: 10.5pt;
+  line-height: 1.35;
+}
+
+.weather-note {
+  margin: 0 0 10px 0;
+  font-size: 10pt;
+}
+
+.source-group {
+  background: rgba(255,255,255,0.75);
+  border-left: 6px solid var(--gold);
+  margin-bottom: 12px;
+  padding: 12px 16px;
+  border-radius: 0 12px 12px 0;
+}
+
+.source-group h3 {
+  margin: 0 0 5px 0;
+}
+
+.source-group ul {
+  margin-top: 4px;
+}
+
+.footer-meta {
+  color: var(--ink);
+  margin-top: 0.3in;
+}
+
+/* --- Bar sub-module: a warmer, low-lit variant of The Spot --- */
+.bar-page {
+  background:
+    linear-gradient(155deg, rgba(198,156,77,0.30), rgba(244,211,94,0.14) 45%, rgba(248,243,231,0.97)),
+    var(--cream);
+}
+
+.bar-page::after {
+  background: rgba(198,156,77,0.32);
+}
+
+.warm-kicker {
+  color: #a9722f;
+}
+
+.bar-hero-note {
+  background: linear-gradient(135deg, rgba(198,156,77,0.22), rgba(244,211,94,0.10));
+  border-left: 8px solid var(--gold);
+  border-radius: 0 18px 18px 0;
+  padding: 18px 22px;
+  margin: 6px 0 8px 0;
+}
+
+.bar-hero-note p {
+  margin: 0;
+  font-size: 13pt;
+  line-height: 1.5;
+  font-style: italic;
+  color: #4a3720;
+}
+
+.bar-room ul {
+  margin-top: 8px;
+}
+
+/* Warm amber note box — replaces the cold navy .editor-note */
+.bar-note {
+  background: linear-gradient(140deg, #8a5a2b, #b6803c);
+  color: #fdf6e7;
+  padding: 18px;
+  border-radius: 18px;
+  box-shadow: 0 10px 22px rgba(138,90,43,0.24);
+}
+
+.bar-note h3 {
+  color: var(--lemon);
+  margin-top: 0;
+}
+
+.pill-list.warm span {
+  border-color: var(--gold);
+  background: rgba(198,156,77,0.16);
+  color: #4a3720;
+}
+
+.pill-list.warm.gold span {
+  border-color: #b6803c;
+  background: rgba(244,211,94,0.30);
+}
+
+/* ===== Serious protocol ===================================================
+   Same skeleton, quieter voice: no decorative corner disc, a calmer wash,
+   more air, and a letter on the closing page. Colours come from the
+   `serious` entry under `protocols:` in palettes.yaml. */
+
+.protocol-serious .page {
+  background:
+    linear-gradient(180deg, rgba(176,141,91,0.07), rgba(247,242,236,0) 30%),
+    var(--cream);
+  padding: 0.8in;
+}
+
+.protocol-serious .page::after {
+  display: none;
+}
+
+.protocol-serious .cover {
+  padding: 0;
+}
+
+.protocol-serious .cover-band {
+  border-left: none;
+  border-top: 3px solid var(--gold);
+  text-align: center;
+}
+
+.protocol-serious .cover-band .gold-rule {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.protocol-serious h2 {
+  font-weight: normal;
+  letter-spacing: 0.01em;
+}
+
+.protocol-serious .section-kicker {
+  letter-spacing: 0.22em;
+}
+
+.protocol-serious .accent-strip {
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.6;
+}
+
+.protocol-serious .lead {
+  line-height: 1.7;
+}
+
+.letter {
+  margin-top: 0.45in;
+  padding: 0.4in 0.45in;
+  background: #FFFFFF;
+  border-top: 3px solid var(--gold);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.04);
+}
+
+.letter p {
+  font-size: 12.5pt;
+  line-height: 1.7;
+  margin: 0 0 0.14in;
+  font-style: italic;
+}
+
+.letter .salutation {
+  font-style: normal;
+  color: var(--navy);
+}
+
+.letter .signoff {
+  font-style: normal;
+  margin-top: 0.22in;
+  color: var(--navy);
+}
+
+.two-col.single {
+  grid-template-columns: 1fr;
+}
+
+/* ---- web view ---- */
+@media screen {
+  html { background: #1b1114; }
+  body { background: #1b1114; padding: 24px 0; }
+  .page { margin: 0 auto 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.35); border-radius: 6px; }
+  .page:not(.cover) { height: auto; min-height: 0; padding-bottom: 0.9in; }
+}
+@media screen and (max-width: 860px) {
+  body { padding: 0; }
+  .page { width: 100%; height: auto; min-height: 0; padding: 32px 18px 48px; margin: 0; border-radius: 0; box-shadow: none; }
+  .cover { height: 100vh; height: 100svh; padding: 0; }
+  .cover-band { left: 16px; right: 16px; bottom: 32px; padding: 22px 20px; }
+  .cover-band h1 { font-size: 30px; }
+  .card-grid { grid-template-columns: 1fr 1fr !important; }
+  .two-col, .mini-grid { grid-template-columns: 1fr !important; }
+}
+  </style>
+</head>
+<body class="protocol-serious" style="--navy: #3A1D27; --gold: #B08D5B; --cream: #F7F2EC; --lemon: #E6D3AE; --olive: #7B6B66; --ink: #211A1C;">
+
+<section class="page cover">
+  <img class="hero" src="hero.jpg" alt="">
+  <div class="cover-band">
+    <h1>An Evening on Holland Street</h1>
+    <div class="gold-rule"></div>
+    <p>Wednesday • November 18 • 7:30 PM</p>
+    <p>Bradford, Ontario</p>
+  </div>
+</section>
+
+
+
+
+<section class="page">
+  
+
+  <h2>Quick Details</h2>
+  <div class="card-grid">
+    
+    <div class="card">
+      <div class="card-label">When</div>
+      <div class="card-value">Wednesday, 7:30 PM</div>
+    </div>
+    
+    <div class="card">
+      <div class="card-label">Where</div>
+      <div class="card-value">Tapas no Pátio</div>
+    </div>
+    
+    <div class="card">
+      <div class="card-label">Address</div>
+      <div class="card-value">23 Holland St W, Bradford</div>
+    </div>
+    
+    <div class="card">
+      <div class="card-label">Dinner</div>
+      <div class="card-value">Portuguese small plates</div>
+    </div>
+    
+    <div class="card">
+      <div class="card-label">Wear</div>
+      <div class="card-value">A warm coat, and something you feel beautiful in</div>
+    </div>
+    
+  </div>
+
+  <div class="weather-card">
+    <h3>The Evening</h3>
+    <p>A sunny November day with a high of 13°C, turning clear and cold after dark. By the time we leave it will be heading toward 3°C, so a proper coat is worth it.</p>
+    <div class="mini-grid">
+      <span><b>Temp</b><br>High 13°C, low 3°C</span>
+      <span><b>Rain</b><br>None forecast</span>
+      <span><b>Sky</b><br>Clear</span>
+    </div>
+    
+    <p class="weather-note">Dinner is indoors. A clear sky after dinner is enough for a short walk along Holland Street if we want one.</p>
+    
+    
+    <p class="metadata">
+      Forecast for Wednesday, November 18 · Checked Monday, November 16, 2026 · Environment Canada
+    </p>
+    
+  </div>
+</section>
+
+
+
+
+
+
+<section class="page">
+  <div class="section-kicker">The Restaurant</div>
+  <h2>Tapas no Pátio</h2>
+  <p class="address">23 Holland Street West, Bradford, Ontario</p>
+  <p>A family-run Portuguese restaurant in downtown Bradford, led by Portugal-born chef Luis Raimundo after decades cooking in Toronto. The menu is built around small plates for sharing (salt-cod fritters, cured presunto, seafood and grilled meats) in a room the house describes as warm and familiar.
+</p>
+
+  <div class="two-col single">
+    <div>
+      <h3>Why Here</h3>
+      <ul>
+        
+        <li>Portuguese cooking made for sharing across a table</li>
+        
+        <li>Warm and familiar rather than formal</li>
+        
+        <li>Quiet on a Wednesday: live entertainment is only on weekends</li>
+        
+        <li>Open until midnight, so there&#39;s no rush</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+
+  <h3>From the Kitchen</h3>
+  <div class="pill-list">
+    
+    <span>Pataniscas (salt-cod fritters)</span>
+    
+    <span>Cured presunto</span>
+    
+    <span>Cheese and cured-meat board</span>
+    
+    <span>Shrimp</span>
+    
+    <span>Mussels</span>
+    
+    <span>Bitoque house steak</span>
+    
+  </div>
+
+  <h3>To Drink</h3>
+  <div class="pill-list gold">
+    
+    <span>Wine by the glass</span>
+    
+    <span>Cocktails</span>
+    
+    <span>Something without alcohol</span>
+    
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
